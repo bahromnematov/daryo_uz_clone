@@ -1,10 +1,12 @@
 import 'package:daryo_app_clone/models/news.dart';
 import 'package:flutter/material.dart';
 
-class NewsItem extends StatelessWidget {
-  News news;
+import '../../models/news_response.dart';
 
-  NewsItem({Key? key, required this.news}) : super(key: key);
+class NewsItem extends StatelessWidget {
+  final Articles article;
+
+  const NewsItem({Key? key, required this.article}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class NewsItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    '${news.hour} | ${news.date} | ',
+                    '${article.publishedAt} ',
                     style: const TextStyle(color: Colors.grey, fontSize: 12.0),
                   ),
                   Icon(
@@ -34,7 +36,7 @@ class NewsItem extends StatelessWidget {
                   const SizedBox(
                     width: 4.0,
                   ),
-                  Text(news.watchCount.toString(),
+                  Text("600",
                       style:
                           const TextStyle(color: Colors.blue, fontSize: 12.0))
                 ],
@@ -46,11 +48,11 @@ class NewsItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.network(news.imageUrl!, width: 120, height: 80),
+              Image.network(article.urlToImage??'', width: 120, height: 80),
               const SizedBox(width: 12.0),
               Expanded(
                 child: Text(
-                  news.title!,
+                  article.title!,
                   style:
                       const TextStyle(fontWeight: FontWeight.w500, height: 1.2),
                 ),
